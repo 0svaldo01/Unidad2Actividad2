@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Unidad2Actividad2.Models.ViewModels;
 using Unidad2Actividad2.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Unidad2Actividad2.Controllers
 {
@@ -18,10 +19,22 @@ namespace Unidad2Actividad2.Controllers
 
             return View(datos);
         }
-        // intentar recordar porque queria cambiar la ruta por defecto
-        public IActionResult Detalles() 
+        [Route("/{Nombre}/Detalles")]
+        // intentar recordar porque queria cambiar la ruta por defecto 
+        //era porque se supone que la ruta seria algo como Home/NombreRaza/Detalles
+        //por eso no es la ruta por defecto
+        public IActionResult Detalles(string Nombre) 
         {
-            return View();
+            PerrosContext context = new();
+            var existe = context.Razas.Any(c => c.Nombre.ToLower() == Nombre);
+
+            if (existe is false) 
+            {
+                return RedirectToAction("Index");
+            }
+
+            var datos=context.Razas.Where(x=>x.Nombre.ToLower()==Nombre).Select
+            return View(datos);
         }
     }
 }
