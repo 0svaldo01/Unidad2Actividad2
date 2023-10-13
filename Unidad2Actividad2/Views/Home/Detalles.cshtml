@@ -1,0 +1,91 @@
+﻿@model Unidad2Actividad2.Models.ViewModels.DetallesRazaViewModel
+@{
+    Layout = "MainLayout";
+}
+<h2 id="nombre">@Model.NombreRaza</h2>
+
+<section class="descripcion" id="descripcion">
+    @Model.Descripcion
+</section>
+
+<section class="galeria">
+    <img id="fotoPerro" src="~/imgs_perros/@(Model.Id)_0.jpg" />
+</section>
+
+<section class="datos">
+    <h3>Datos</h3>
+    <label>Otros nombres: </label>
+    <span id="otrosNombre">@Model.OtrosNombres</span>
+    <br />
+    <label>País de Origen: </label>
+    <span id="pais">@foreach(var p in Model.Pais)
+        {
+           @p.NombrePais 
+        }
+     </span>
+    <br />
+    <label>Peso: </label>
+    <span id="peso">@Model.PesoMin. - @Model.PesoMax.</span>
+    <br />
+    <label>Altura: </label>
+    <span id="altura">@Model.AlturaMin. - @Model.AlturaMax.</span>
+    <br />
+    <label>Esperanza de Vida: </label>
+    <span id="vida">@Model.EsperanzaVida</span>
+    <br />
+</section>
+<section class="estadisticas">
+    <h3>Estadísticas</h3>
+    @foreach(var e in Model.Estadicas)
+    {
+    <label>Nivel de Energía:</label><img src="~/imgs/nivel(@e.NivelEnergia).png" /><br />
+    <label>Facilidad de Entrenamiento:</label><img src="~/imgs/nivel@(e.FacilidadEntrenamiento).png" /><br />
+    <label>Ejercicio Obligatorio:</label><img src="~/imgs/nivel@(e.EjercicioObligatorio).png" /><br />
+    <label>Amistad con Desconocidos:</label><img src="~/imgs/nivel@(e.AmistadDesconocidos).png" /><br />
+    <label>Amistad con Perros:</label><img src="~/imgs/nivel@(e.AmistadPerros).png" /><br />
+    <label>Necesidad de Cepillado:</label><img src="~/imgs/nivel@(e.NecesidadCepillado).png" />
+    }
+</section>
+<section class="fisicas">
+    <h3>Caracteristicas Físicas</h3>
+    @foreach(var c in Model.Caracteristicas)
+    {
+        <label>Patas: </label>
+        <span id="patas">@c.Patas</span>
+        <br />
+        <label>Cola: </label>
+        <span id="cola"> @c.Cola</span>
+        <br />
+        <label>Hocico: </label>
+        <span id="hocico"> @c.Hocico</span>
+        <br />
+        <label>Pelo: </label>
+        <span id="pelo">@c.Pelo</span>
+        <br />
+        <label>Color: </label>
+        <span id="color">@c.Color</span>
+    }
+</section>
+<br class="clear" />
+
+<a href="javascript:history.back();" class="button">Regresar</a>
+
+<section class="otrosPerros">
+
+    <a href="raza.html">
+        <img src="imgs_perros/80_0.jpg" />
+        <h2>Golden Retriever</h2>
+    </a>
+    <a href="raza.html">
+        <img src="imgs_perros/128_0.jpg" />
+        <h2>Keeshond</h2>
+    </a>
+    <a href="raza.html">
+        <img src="imgs_perros/109_0.jpg" />
+        <h2>Collie Barbudo</h2>
+    </a>
+    <a href="raza.html">
+        <img src="imgs_perros/58_0.jpg" />
+        <h2>Galgo Italiano</h2>
+    </a>
+</section>
